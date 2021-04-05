@@ -1,17 +1,17 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+@section('content_header')
+    <h1 class="d-flex justify-content-center">Editar Projecto</h1>
+@stop
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Editar Projecto</h2>
-            </div>
+    <div class="container-fluid col-md-8">
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('projects.index') }}" title="Go back"> <i
                         class="fas fa-backward "></i> </a>
             </div>
-        </div>
-    </div>
+
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -56,4 +56,5 @@
             </div>
         </div>
     </form>
+</div>
 @endsection

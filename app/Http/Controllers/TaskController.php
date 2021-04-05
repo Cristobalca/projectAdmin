@@ -64,9 +64,11 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
+        $users = User::all();
+        $task = Task::findOrFail($id);    
+        return view('tasks.edit', compact('task','users'));   
     }
 
     /**
@@ -78,7 +80,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+       
+        $task->update($request->all());
+
+        return redirect()->route('projects.show',$request->get('project_id'))
+        ->with('success' ,'Tarea Editada!');
     }
 
     /**
@@ -89,6 +95,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return back()
+        ->with('success' ,'Tarea Borrada!');
     }
 }
