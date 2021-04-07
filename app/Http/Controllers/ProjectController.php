@@ -69,7 +69,7 @@ class ProjectController extends Controller
     {
         // $tasks = Task::where('project_id', $project->id)->get();
         // $tasks = DB::table('tasks')->where('project_id', $project->id)->get();
-
+            //revisar consulta 
         $tasks = DB::table('tasks AS ts')
             ->join('users AS a', 'a.id', 'ts.user_created_id')
             ->join('users AS b',  'b.id', 'ts.user_assigned_id')

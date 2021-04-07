@@ -225,7 +225,7 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -242,20 +242,29 @@ return [
         ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
             'text' => 'Lista de Usuarios',
-            'url'  => 'admin/settings',
+            'route'  => 'user.index',
             'icon' => 'fas fa-fw fa-address-book',
-        ],
+        ], 
         [
-            'text' => 'Roles',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user-tag',
-        ],
-        [
-            'text' => 'Permisos',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user-shield',
+            'text' => 'Lista De Roles',
+            'route'  => 'role.index',
+            'icon' => 'fas fa-fw fa-id-card',
         ],
         
+        ['header' => 'ACCIONES'],
+        [
+            'text'        => 'Crear Proyecto',
+            'route'         => 'projects.create',
+            'icon'        => 'fas  fa-fw fa-folder-plus',
+           
+        ],
+        [
+            'text' => 'Crear Roles',
+            'route'  => 'role.create',
+            'icon' => 'fas fa-fw fa-users-cog',
+        ],
+       
+       /*
         ['header' => 'labels'],
         [
             'text'       => 'important',
@@ -272,6 +281,23 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+         [
+            'text'    => 'Roles',
+            'icon'    => 'fas fa-fw fa-user-tag',
+            'submenu' => [
+                [
+                    'text' => 'Crear Roles',
+                    'route'  => 'role.create',
+                    'icon' => 'fas fa-fw fa-users-cog',
+                ],
+                [
+                    'text' => 'Lista de Roles',
+                    'route'  => 'role.index',
+                    'icon' => 'fas fa-fw fa-id-card',
+                ],
+            ],
+        ], 
+        */
     ],
 
     /*

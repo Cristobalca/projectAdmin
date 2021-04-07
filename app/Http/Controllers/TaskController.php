@@ -26,7 +26,8 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    //$id = id_project
+    public function create($id) 
     {
         $users = User::all();
     
