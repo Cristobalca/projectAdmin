@@ -11,7 +11,7 @@
         <div class="card">
             <div class="d-flex justify-content-start mt-2 ml-2">
                 @can('haveaccess', 'role.create')
-                    <a href="{{ route('role.create') }}" class="btn btn-primary ">Create
+                    <a href="{{ route('role.create') }}" class="btn btn-success ">Crear
                     </a>
                 @endcan
             </div>
@@ -22,9 +22,9 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Slug</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Descripcion</th>
                             <th scope="col">Full access</th>
                             <th colspan="3"></th>
                         </tr>
@@ -39,21 +39,22 @@
                                 <td>{{ $role['full-access'] }}</td>
                                 <td>
                                     @can('haveaccess', 'role.show')
-                                        <a class="btn btn-info" href="{{ route('role.show', $role->id) }}">Show</a>
+                                        <a class="btn btn-info" href="{{ route('role.show', $role->id) }}">Ver</a>
                                     @endcan
                                 </td>
                                 <td>
                                     @can('haveaccess', 'role.edit')
-                                        <a class="btn btn-success" href="{{ route('role.edit', $role->id) }}">Edit</a>
+                                        <a class="btn btn-warning" href="{{ route('role.edit', $role->id) }}">Editar</a>
                                     @endcan
                                 </td>
-
                                 <td>
                                     @can('haveaccess', 'role.destroy')
                                         <form action="{{ route('role.destroy', $role->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger">Delete</button>
+                                            <button class="btn btn-danger"
+                                            onclick="return confirm(&quot;Seguro que quiere Borrar este Rol? delete?&quot;)">
+                                            Borrar</button>
                                         </form>
                                     @endcan
 

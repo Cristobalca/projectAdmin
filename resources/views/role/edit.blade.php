@@ -33,8 +33,7 @@
 
                                 <div class="form-group">
 
-                                    <textarea class="form-control" placeholder="Description" name="description"
-                                        id="description" rows="3">{{ old('description', $role->description) }}</textarea>
+                                    <textarea class="form-control" placeholder="Description" name="description" id="description" rows="3">{{old('description', $role->description)}}</textarea>
                                 </div>
 
                                 <hr>
@@ -61,13 +60,14 @@
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input"
                                             id="permission_{{ $permission->id }}" value="{{ $permission->id }}"
-                                            name="permission[]" @if (is_array(old('permission')) && in_array(" $permission->id",
+                                            name="permission[]" 
+                                            {{-- este es para que no se borre si algo campo requerido = null --}}
+                                            @if (is_array(old('permission')) && in_array(" $permission->id",
                                         old('permission'))) checked
-
-                                    @elseif( is_array($permission_role) &&
+                                        {{-- este es para traer de la DB a la hora de editar  --}}
+                                        @elseif( is_array($permission_role) &&
                                         in_array("$permission->id", $permission_role) )
-                                        checked @endif
-                                        >
+                                             checked @endif>
                                         <label class="custom-control-label" for="permission_{{ $permission->id }}">
                                             {{ $permission->id }}
                                             -

@@ -29,29 +29,25 @@ class UserController extends Controller
     }
 
  
-    public function create()
+    public function create(User $user)
     {
         //$this->authorize('create', User::class);
-        //return 'Create';
+        $roles= Role::all();
+        return view('user.create', compact('user','roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        
+           $user =   User::create($request->all());
+            $user->roles()->sync($request->get('roles'));
+
+        return redirect()->route('user.index')
+        ->with('status_success','Usuario Creado Exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(User $user)
     {
         $this->authorize('view', [$user, ['user.show','userown.show'] ]);
@@ -62,12 +58,7 @@ class UserController extends Controller
         return view('user.view', compact('roles', 'user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(User $user)
     {
         $this->authorize('update', [$user, ['user.edit','userown.edit'] ]);
@@ -78,13 +69,7 @@ class UserController extends Controller
         return view('user.edit', compact('roles', 'user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -100,8 +85,6 @@ class UserController extends Controller
         
         return redirect()->route('user.index')
             ->with('status_success','User updated successfully'); 
-
-
 
     }
 

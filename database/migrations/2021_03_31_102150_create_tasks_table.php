@@ -16,18 +16,15 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->text('description', 200);
-            $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('user_created_id')->nullable();
-            $table->unsignedBigInteger('user_assigned_id')->nullable();
-
-
-            $table->foreign('project_id')->references('id')->on('projects')
+            $table->text('description', 300);
+            $table->boolean('is_complete')->default(false);
+            //foreignId alias de bigInteger son demaciado grande solo usuar en caso que lo requiera mal parsis
+            //en este caso.
+            $table->foreignId('project_id')->references('id')->on('projects')
             ->onDelete('cascade');
-            
-            $table->foreign('user_created_id')->references('id')->on('users')
+            $table->foreignId('user_created_id')->references('id')->on('users')
             ->onDelete('set null'); 
-            $table->foreign('user_assigned_id')->references('id')->on('users')
+            $table->foreignId('user_assigned_id')->references('id')->on('users')
             ->onDelete('set null');
            
             $table->timestamps();

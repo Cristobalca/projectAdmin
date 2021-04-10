@@ -33,7 +33,7 @@ class UserPolicy
         return $usera->id > 0;
     }
 
-    /**
+    /**  usera = user Autificado  
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $usera

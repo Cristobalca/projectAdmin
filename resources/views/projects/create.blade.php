@@ -4,29 +4,15 @@
 @section('content_header')
     <h1 class="d-flex justify-content-center">Nuevo Proyectos</h1>
 @stop
-
+{{-- lista --}}
 @section('content')
     <div class="container-fluid col-md-8">
-        <div class="pull-right mb-2">
-            <a class="btn btn-primary" href="{{ route('projects.index') }}" title="Volver atras">
-                <i class="fas fa-backward "></i> </a>
-        </div>
         <div class="card">
             <div class="card-header bg-dark">
                 <h2>Crear Proyecto</h2>
             </div>
             <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger mt-3">
-                        <strong>Whoops Falta algo!</strong><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
+                @include('custom.message')
 
                 <form action="{{ route('projects.store') }}" method="POST">
                     @csrf
@@ -46,8 +32,13 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>status:</strong>
-                                <input type="text" name="status" class="form-control" placeholder="status">
+                                <label for="user_id">Estado del Proyecto</label>
+                                <select name="status" class="form-control">
+                                    <option value="1">Comenzado</option>
+                                    <option value="2">En Proceso ...</option>
+                                    <option value="3">Terminado</option>
+                                </select>
+
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -61,11 +52,12 @@
                                 </select>
                             </div>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Crear</button>
+                            <a class="btn btn-danger" href="{{ route('projects.index') }}" title="Volver atras">
+                                Volver</a>
                         </div>
                     </div>
 
@@ -73,5 +65,4 @@
             </div>
         </div>
     </div>
-
 @endsection

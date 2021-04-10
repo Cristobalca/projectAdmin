@@ -2,36 +2,21 @@
 
 @section('title', 'Dashboard')
 @section('content_header')
-    <h1 class="d-flex justify-content-center">Editar Projecto</h1>
+    <h1 class="d-flex justify-content-center">Editar Proyecto</h1>
 @stop
-
+{{-- lista --}}
 @section('content')
     <div class="container-fluid col-md-8">
-        <div class="pull-right">
-            <a class="btn btn-primary mb-2" href="{{ route('projects.index') }}" title="Go back"> <i
-                    class="fas fa-backward "></i> </a>
-        </div>
-
         <div class="card">
             <div class="card-header bg-dark">
                 <h2>Editar Proyecto</h2>
             </div>
             <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('custom.message')
 
                 <form action="{{ route('projects.update', $project->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
@@ -49,19 +34,22 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Estado:</strong>
-                                <input type="text" name="status" class="form-control" placeholder="{{ $project->status }}"
-                                    value="{{ $project->status }}">
+                                <label for="user_id">Estado del Proyecto</label>
+                                <select name="status" class="form-control">
+                                    <option value="1">Comenzado</option>
+                                    <option value="2">En Proceso ...</option>
+                                    <option value="3">Terminado</option>
+                                </select>
+
                             </div>
                         </div>
-
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">Editar</button>
+                            <a class="btn btn-danger" href="{{ route('projects.index') }}" title="Volver">Volver</a>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                    </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
     </div>
 @endsection

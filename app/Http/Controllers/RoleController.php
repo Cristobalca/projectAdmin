@@ -59,6 +59,7 @@ class RoleController extends Controller
         
         //if ($request->get('permission')) {
             //return $request->all();
+            
             $role->permissions()->sync($request->get('permission'));
         //}
         return redirect()->route('role.index')
@@ -66,12 +67,6 @@ class RoleController extends Controller
        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Role $role)
     {
         $this->authorize('haveaccess','role.show');
@@ -81,24 +76,13 @@ class RoleController extends Controller
         foreach($role->permissions as $permission) {
             $permission_role[]=$permission->id; 
         }
-        //return   $permission_role;
-
-
-        //return $role;
+    
         $permissions = Permission::get();
-
-
-
 
         return view('role.view', compact('permissions','role','permission_role'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Role $role)
     {   
 
@@ -108,26 +92,14 @@ class RoleController extends Controller
         foreach($role->permissions as $permission) {
             $permission_role[]=$permission->id; 
         }
-        //return   $permission_role;
-
-
-        //return $role;
+    
         $permissions = Permission::get();
-
-
-
 
         return view('role.edit', compact('permissions','role','permission_role'));
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Role $role)
     {
         $this->authorize('haveaccess','role.edit');

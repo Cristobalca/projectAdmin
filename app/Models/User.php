@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\CAPermission\Traits\UserTrait;
+use App\Models\Project;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable , UserTrait;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Usertrait es una clase abastracta que ayuda a reutilizar el codigo 
+     * y separar la funcionalidades del resto de clases 
+     * con la ventaja de que solo se importa y tiene acceso a todas sus funciones
      */
+    
     protected $fillable = [
         'name',
         'email',
@@ -41,13 +43,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     public function projects(){
-        return $this->hasMany('App\Models\Project');
+        return $this->hasMany(Project::class);
     }
 
     public function roles()
     {
+
         return $this->belongsToMany('App\CAPermission\Models\Role')->withTimestamps();
     }
 }

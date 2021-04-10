@@ -46,7 +46,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Editar Tarea</button>

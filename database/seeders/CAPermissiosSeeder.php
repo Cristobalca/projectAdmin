@@ -14,7 +14,8 @@ class CAPermissiosSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * Re estrutural el seeder para que funcione en Producion y se escalable
+     * y se le puedan agregar mas permisos
      */
     public function run()
     {
@@ -36,7 +37,7 @@ class CAPermissiosSeeder extends Seeder
         $useradmin= User::create([
             'name'      => 'admin',
             'email'     => 'admin@admin.com',
-            'password'  => Hash::make('admin')    
+            'password'  => Hash::make('admin123')    
         ]);
 
         //rol admin
@@ -123,6 +124,11 @@ class CAPermissiosSeeder extends Seeder
             'slug' => 'user.index',
             'description' => 'El usuario Puede listar usuarios',
         ]);
+        $permission = Permission::create([
+            'name' => 'Create user',
+            'slug' => 'user.create',
+            'description' => 'El usuario Puede create user',
+        ]);
         
         $permission_all[] = $permission->id;
         
@@ -166,12 +172,10 @@ class CAPermissiosSeeder extends Seeder
             'description' => 'El usuario Puede  editar own user',
         ]);
         
+
+
         
-        /*$permission = Permission::create([
-            'name' => 'Create user',
-            'slug' => 'user.create',
-            'description' => 'El usuario Puede create user',
-        ]);
+        /*
         
         $permission_all[] = $permission->id;
         */
@@ -179,6 +183,106 @@ class CAPermissiosSeeder extends Seeder
         //table permission_role
         //$roladmin->permissions()->sync( $permission_all);
 
+        $permission_all[] = $permission->id;
+
+        // permission Project
+        $permission = Permission::create([
+            'name' => 'List project',
+            'slug' => 'project.index',
+            'description' => 'El usuario Puede  listar Proyectos',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Show project',
+            'slug' => 'project.show',
+            'description' => 'El usuario Puede  ver Proyectos',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Create project',
+            'slug' => 'project.create',
+            'description' => 'El usuario Puede crear Proyectos',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Edit project',
+            'slug' => 'project.edit',
+            'description' => 'El usuario Puede editar Proyectos',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Destroy project',
+            'slug' => 'project.destroy',
+            'description' => 'El usuario Puede  Eliminar Proyectos',
+        ]);
+
+        // $permission_all[] = $permission->id;
+
+
+        // permission Taks
+        // $permission = Permission::create([
+        //     'name' => 'List task',
+        //     'slug' => 'task.index',
+        //     'description' => 'El usuario Puede  listar Tareas',
+        // ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Show task',
+            'slug' => 'task.show',
+            'description' => 'El usuario Puede  ver Tareas',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Create task',
+            'slug' => 'task.create',
+            'description' => 'El usuario Puede crear Tareas',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Edit task',
+            'slug' => 'task.edit',
+            'description' => 'El usuario Puede editar Tareas',
+        ]);
+
+        $permission_all[] = $permission->id;
+                
+        $permission = Permission::create([
+            'name' => 'Destroy task',
+            'slug' => 'task.destroy',
+            'description' => 'El usuario Puede  Eliminar Tareas',
+        ]);
+
+        $permission_all[] = $permission->id;
+                                
+        $permission = Permission::create([
+            'name' => 'checked own task',
+            'slug' => 'checkedown.task',
+            'description' => 'Marcar Tarea como compleatada ',
+        ]);
+
+        $permission_all[] = $permission->id;
+                                
+        $permission = Permission::create([
+            'name' => 'checked asign task',
+            'slug' => 'checkedasign.task',
+            'description' => 'Marcar Tarea Asignada como compleatada ',
+        ]);
+
+        $roladmin->permissions()->sync($permission_all);
 
 
     }

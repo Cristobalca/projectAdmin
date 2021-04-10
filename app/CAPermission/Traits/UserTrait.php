@@ -23,7 +23,7 @@ trait UserTrait {
             }
 
             foreach ($role->permissions as $perm) {
-                
+                // slug de los permissions
                 if ($perm->slug == $permission ) {
                     return true;
                 }   

@@ -244,11 +244,13 @@ return [
             'text' => 'Lista de Usuarios',
             'route'  => 'user.index',
             'icon' => 'fas fa-fw fa-address-book',
+            // 'can' => 'user.index'
         ], 
         [
             'text' => 'Lista De Roles',
             'route'  => 'role.index',
             'icon' => 'fas fa-fw fa-id-card',
+            // 'can' => 'role.index'
         ],
         
         ['header' => 'ACCIONES'],
@@ -256,12 +258,20 @@ return [
             'text'        => 'Crear Proyecto',
             'route'         => 'projects.create',
             'icon'        => 'fas  fa-fw fa-folder-plus',
+            // 'can' => 'project.create'
            
         ],
         [
             'text' => 'Crear Roles',
             'route'  => 'role.create',
             'icon' => 'fas fa-fw fa-users-cog',
+            // 'can' => 'role.create'
+        ],
+        [
+            'text' => 'Crear Usuario',
+            'route'  => 'user.create',
+            'icon' => 'fas fa-fw fa-user-plus',
+            // 'can'  => 'user.create'
         ],
        
        /*

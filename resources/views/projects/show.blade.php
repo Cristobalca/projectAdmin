@@ -13,20 +13,16 @@
                 <a class="btn btn-primary mr-2 ml-2" href="{{ route('projects.index') }}" title="Volver">
                     <i class="fas fa-backward "></i></a>
             </div>
+            @can('haveaccess', 'task.create')
             <div>
                 <a class="btn btn-success" href="{{ route('tasks.create', $project->id) }}" title="Crear tarea">
                     <i class="fas fa-plus-square "></i> Crear Tarea</a>
             </div>
+            @endcan
         </div>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
+        @include('custom.message')
         <div class="card mt-2 ">
             <div class="card-body">
-
                 <small><strong>Descripcion :</strong></small>
                 <Small> {{ $project->description }}</Small>
                 <small><strong>| Estado: </strong></small>{{ $project->status }}<br>
@@ -38,39 +34,43 @@
         <div class="row row-cols-md-2">
             @foreach ($tasks as $task)
                 <div class="col mb-2">
+                    @if ($task->is_complete)
 
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Nombre: </strong>{{ $task->NombreTarea }}</h5>
-                            <p class="card-text text-nowrap text-truncate">{{ $task->description }}</p>
-                            <small class="card-text"><strong>Creada Por: </strong>{{ $task->Creador }}</small><br>
-                            <small class="card-text"><strong>Asignado A: </strong>{{ $task->Asigando }}</small>
-                        </div>
-                        <div class="card-footer bg-dark">
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                        <div class="card text-dark- bg-green  mb-3">
+                        @else
+                            <div class="card text-white bg-dark mb-3">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Nombre: </strong>{{ $task->NombreTarea }}</h5>
+                        <p class="card-text text-nowrap text-truncate">{{ $task->description }}</p>
+                        <small class="card-text"><strong>Creada Por: </strong>{{ $task->Creador }}</small><br>
+                        <small class="card-text"><strong>Asignado A: </strong>{{ $task->Asigando }}</small>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
 
-                                {{-- <a href="{{ route('tasks.show', $task->id) }}" title="show">
-                                    <i class="fas fa-eye text-success  fa-lg"></i>
-                                </a> --}}
-
-                                <a href="{{ route('tasks.edit', $task->id) }}">
-                                    <i class="fas fa-edit  fa-lg"></i>
-                                </a>
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" title="delete" style="border: none; background-color:transparent;"
+                            <a href="{{ route('tasks.show', $task->id) }}" title="show">
+                                <i class="fas fa-check-square fa-lg fa-fw text-success"></i>
+                            </a>
+                            @can('haveaccess', 'task.edit')
+                            <a href="{{ route('tasks.edit', $task->id) }}">
+                                <i class="fas fa-edit  fa-lg"></i>
+                            </a>
+                            @endcan
+                            @can('haveaccess', 'task.destroy')
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;"
                                 onclick="return confirm(&quot;Seguro que quiere Borrar La Tarea? delete?&quot;)">
-                                    <i class="fas fa-trash fa-lg text-danger"></i>
-
-                                </button>
-                            </form>
-                        </div>
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
+                            @endcan
+                        </form>
                     </div>
                 </div>
-            @endforeach
         </div>
+        @endforeach
+    </div>
 
     </div>
 @endsection

@@ -9,27 +9,20 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The policy mappings for the application.
-     *
-     * @var array
-     */
+   
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        User::class => UserPolicy::class,
+         User::class => UserPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
         $this->registerPolicies();
-
+            //haveaccess = name del Gate // User obtiene el usuario logeado
+            //$perm comprueba el slug del permissions
         Gate::define('haveaccess', function (User $user, $perm){
-            //dd($perm);
+            // dd($perm); resive el permisos 
             return $user->havePermission($perm); 
             //return $perm;
         });
