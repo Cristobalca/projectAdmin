@@ -189,9 +189,9 @@ return [
     'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    'register_url' => false, // 'register',
+    'password_reset_url' => false, //'password/reset',
+    'password_email_url' =>false,  //'password/email',
     'profile_url' => false,
 
     /*
@@ -244,7 +244,8 @@ return [
             'text' => 'Lista de Usuarios',
             'route'  => 'user.index',
             'icon' => 'fas fa-fw fa-address-book',
-            // 'can' => 'user.index'
+            // 'can' => 'project.create',
+            'role' => 'admin'
         ], 
         [
             'text' => 'Lista De Roles',

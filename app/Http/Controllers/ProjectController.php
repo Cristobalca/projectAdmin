@@ -8,12 +8,16 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+
 
 class ProjectController extends Controller
 {
     
     public function index()
     {
+        Gate::authorize('haveaccess','project.index');
+
         $projects = Project::latest()->paginate(5);
 
         return view('projects.index', compact('projects'))
@@ -24,6 +28,9 @@ class ProjectController extends Controller
 
     public function create()
     {
+        
+        Gate::authorize('haveaccess','project.create');
+
         $users = User::all();
 
         return view('projects.create', compact('users'));
@@ -31,14 +38,17 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
+        Gate::authorize('haveaccess','project.create');
         Project::create($request->all());
         return redirect()->route('projects.index')
-            ->with('success', 'Project created successfully.'); // resivar ejemplo de platziPress
+            ->with('success', 'Proyecto Creado exitosamente'); // resivar ejemplo de platziPress
     }
 
     
     public function show(Project $project, Task $tasks)
     {
+        Gate::authorize('haveaccess','project.show');
+
       
             //revisar consulta 
         $tasks = DB::table('tasks AS ts')
@@ -67,23 +77,28 @@ class ProjectController extends Controller
     
     public function edit(Project $project)
     {
+        Gate::authorize('haveaccess','project.edit');
+
         return view('projects.edit', compact('project'));
     }
     
     public function update(ProjectRequest $request, Project $project)
     {
-  
+        Gate::authorize('haveaccess','project.edit');
+
         $project->update($request->all());
 
         return redirect()->route('projects.index')
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Proyecto Acutilizado exitosamente');
     }
   
     public function destroy(Project $project)
     {
+        Gate::authorize('haveaccess','project.destroy');
+
         $project->delete();
 
         return redirect()->route('projects.index')
-            ->with('danger', 'Project deleted successfully');
+            ->with('danger', 'Proyecto Borrado exitosamente');
     }
 }

@@ -48,10 +48,11 @@
                     </div>
                     <div class="card-footer bg-dark">
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
-
+                            
                             <a href="{{ route('tasks.show', $task->id) }}" title="show">
                                 <i class="fas fa-check-square fa-lg fa-fw text-success"></i>
                             </a>
+    
                             @can('haveaccess', 'task.edit')
                             <a href="{{ route('tasks.edit', $task->id) }}">
                                 <i class="fas fa-edit  fa-lg"></i>

@@ -17,8 +17,10 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('name', 120);
             $table->string('description', 250);
-            $table->enum('status', ['comenzando','en_proceso','terminado'])->default(1); //1 comenzando 2 en proceso 3 terminado
-            $table->foreignId('user_assigned_id')->references('id')->on('users')->onDelete('set null');
+            $table->enum('status', ['comenzando','en_proceso','terminado'])->default('comenzando'); //1 comenzando 2 en proceso 3 terminado
+            $table->unsignedBigInteger('user_assigned_id');
+            
+            $table->foreign('user_assigned_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

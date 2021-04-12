@@ -54,11 +54,11 @@
                 
                                    
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        @can('view', [$user, ['checkedown.task', 'checkedasign.task']])
-                        <div class="form-group">
+                        {{-- /@can('view', [$user, ['checkedown.task','checkedasign.task']]) --}}
+                            <div class="form-group">
                             <input type="submit" class="btn btn-primary"  value="{{ $task->is_complete == 1 ? 'completa' : 'desmarcar' }} "
                             />
-                            @endcan
+                        {{-- @endcan --}}
                             <a class="btn btn-danger" href="{{ route('projects.show', $task->project_id) }}">Volver</a>
                         </div>
                     </div>

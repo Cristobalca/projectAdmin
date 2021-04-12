@@ -84,7 +84,7 @@ class UserController extends Controller
         $user->roles()->sync($request->get('roles'));
         
         return redirect()->route('user.index')
-            ->with('status_success','User updated successfully'); 
+            ->with('status_success','usuario Actualizado Exitosamente'); 
 
     }
 
@@ -95,6 +95,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')
-            ->with('status_success','User successfully removed'); 
+            ->with('status_success','Usuario Borrado Exitosamente'); 
     }
 }

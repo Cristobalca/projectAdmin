@@ -12,6 +12,7 @@
                 <h2>Editar Tarea</h2>
             </div>
             <div class="card-body">
+                @include('custom.message')
                 <form action="{{ route('tasks.update', $task->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -33,7 +34,7 @@
                         <input type="hidden" name="project_id" class="form-control readOnly"
                             value=" {{ $task->project_id }}">
                         <input type="hidden" name="user_created_id" class="form-control readOnly"
-                            value=" {{ auth()->user()->id }}">
+                            value=" {{$task->user_created_id }}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">

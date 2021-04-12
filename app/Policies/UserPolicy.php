@@ -53,13 +53,7 @@ class UserPolicy
         }
     }
     
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\User  $usera
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    
     public function view(User $usera, User $user, $perm=null)
     {
         if ($usera->havePermission($perm[0])){

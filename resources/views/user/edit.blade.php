@@ -25,6 +25,10 @@
                                     <input type="text" class="form-control" id="email" placeholder="email" name="email"
                                         value="{{ old('email', $user->email) }}">
                                 </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password"
+                                        >
+                                </div>
 
                                 <div class="form-group">
                                     <select class="form-control" name="roles" id="roles">
