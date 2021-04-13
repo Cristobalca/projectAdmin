@@ -22,9 +22,9 @@ class CreateTasksTable extends Migration
             //en este caso.
             $table->foreignId('project_id')->references('id')->on('projects')
             ->onDelete('cascade');
-            $table->foreignId('user_created_id')->references('id')->on('users')
+            $table->foreignId('user_created_id')->nullable()->references('id')->on('users')
             ->onDelete('set null'); 
-            $table->foreignId('user_assigned_id')->references('id')->on('users')
+            $table->foreignId('user_assigned_id')->nullable()->references('id')->on('users')
             ->onDelete('set null');
            
             $table->timestamps();

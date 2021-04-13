@@ -20,12 +20,12 @@ class CAPermissiosSeeder extends Seeder
     public function run()
     {
         //truncate tables
-        DB::statement("SET foreign_key_checks=0");
-            DB::table('role_user')->truncate();
-            DB::table('permission_role')->truncate();
-            Permission::truncate();
-            Role::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        // DB::statement("SET foreign_key_checks=0");
+        //     DB::table('role_user')->truncate();
+        //     DB::table('permission_role')->truncate();
+        //     Permission::truncate();
+        //     Role::truncate();
+        // DB::statement("SET foreign_key_checks=1");
 
 
 

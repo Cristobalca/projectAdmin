@@ -28,7 +28,7 @@ class TaskFactory extends Factory
             'description' => $this->faker->text(30),
             'project_id' => Project::all()->random()->id,
             'user_created_id'    =>   $this->faker->randomElement([1,2,3]),
-            'user_assigned_id'    =>  User::all()->random(4,10),
+            'user_assigned_id'    =>  User::all()->random()->id,
             
         ];
     }
