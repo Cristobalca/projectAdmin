@@ -38,7 +38,7 @@ class TaskController extends Controller
     public function show(Task $task , User $user)
     {
 
-        $this->authorize('view',[$task,['checkedown.task','checkedasign.task']]);
+        $this->authorize('view',[$task,['task.checkedown','task.checkedasign']]);
         return view('tasks.show', compact('task','user'));
     }
 

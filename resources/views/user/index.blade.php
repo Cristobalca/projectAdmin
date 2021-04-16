@@ -11,11 +11,11 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header d-flex justify-content-center">
-                        <form method="GET" action="{{ url('/user') }}" accept-charset="UTF-8" class="form-inline col-6"
+                        <form method="GET" action="{{ url('admin/user') }}" accept-charset="UTF-8" class="form-inline col-6"
                             role="search">
                             <div class="input-group col">
                                 <input type="text" class="form-control" name="search" placeholder="Buscar..."
-                                    value="{{ request('search') }}">
+                                    value="{{ request('search') }}">                
                                 <span class="input-group-append">
                                     <button class="btn btn-secondary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -35,7 +35,7 @@
                         <table class="table table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    {{-- <th scope="col">#</th> --}}
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Role(s)</th>
@@ -45,7 +45,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        <th scope="row">{{ $user->id }}</th>
+                                        {{-- <th scope="row">{{ $user->id }}</th> --}}
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>

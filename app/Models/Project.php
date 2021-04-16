@@ -29,4 +29,24 @@ class Project extends Model
     public function taks(){
         return $this->hasMany('App\Models\Task');
     }
+
+    public function scopeName($query, $name)
+    {
+        if($name)
+        
+         return $query->where('name','LIKE',"%$name%");
+    }
+    public function scopeDate($query, $date)
+    {
+        if($date)
+        
+         return $query->where('created_at','LIKE',"%$date%");
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        if($status)
+        
+         return $query->where('status','LIKE',"%$status%");
+    }
 }

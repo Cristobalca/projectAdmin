@@ -54,8 +54,3 @@
         </div>
     </div>
 @endsection
-{{-- @isset($user->roles[0]->name)
-@if ($role->name == $user->roles[0]->name)
-selected
-@endif
-@endisset --}}

@@ -6,9 +6,8 @@ use Illuminate\Database\Seeder;
 use App\CAPermission\Models\Permission;
 use App\CAPermission\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 class CAPermissiosSeeder extends Seeder
 {
     /**
@@ -19,13 +18,13 @@ class CAPermissiosSeeder extends Seeder
      */
     public function run()
     {
-        //truncate tables
-        // DB::statement("SET foreign_key_checks=0");
-        //     DB::table('role_user')->truncate();
-        //     DB::table('permission_role')->truncate();
-        //     Permission::truncate();
-        //     Role::truncate();
-        // DB::statement("SET foreign_key_checks=1");
+        // truncate tables
+        DB::statement("SET foreign_key_checks=0");
+            DB::table('role_user')->truncate();
+            DB::table('permission_role')->truncate();
+            Permission::truncate();
+            Role::truncate();
+        DB::statement("SET foreign_key_checks=1");
 
 
 
@@ -37,7 +36,7 @@ class CAPermissiosSeeder extends Seeder
         $useradmin= User::create([
             'name'      => 'admin',
             'email'     => 'admin@admin.com',
-            'password'  => Hash::make('admin123')    
+            'password'  => 'admin123'    
         ]);
 
         //rol admin
@@ -270,7 +269,7 @@ class CAPermissiosSeeder extends Seeder
                                 
         $permission = Permission::create([
             'name' => 'checked own task',
-            'slug' => 'checkedown.task',
+            'slug' => 'task.checkedown',
             'description' => 'Marcar Tarea como compleatada ',
         ]);
 
@@ -278,11 +277,11 @@ class CAPermissiosSeeder extends Seeder
                                 
         $permission = Permission::create([
             'name' => 'checked asign task',
-            'slug' => 'checkedasign.task',
+            'slug' => 'task.checkedasign',
             'description' => 'Marcar Tarea Asignada como compleatada ',
         ]);
 
-        $roladmin->permissions()->sync($permission_all);
+         $roladmin->permissions()->sync($permission_all);
 
 
     }

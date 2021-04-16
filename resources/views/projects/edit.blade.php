@@ -36,13 +36,22 @@
                             <div class="form-group">
                                 <label for="user_id">Estado del Proyecto</label>
                                 <select name="status" class="form-control">
-                                    <option value="1">Comenzado</option>
-                                    <option value="2">En Proceso ...</option>
-                                    <option value="3">Terminado</option>
+                                    <option value="comenzando">Comenzando</option>
+                                    <option value="en_proceso">En Proceso ...</option>
+                                    <option value="terminado">Terminado</option>
                                 </select>
-
                             </div>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="user_id">Asignar A:</label>
+                                <select name="user_assigned_id" class="form-control">
+                                    <option value="{{$project->user_assigned_id}}">Desea cambiar el Usuario Asignado?</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Editar</button>
                             <a class="btn btn-danger" href="{{ route('projects.index') }}" title="Volver">Volver</a>

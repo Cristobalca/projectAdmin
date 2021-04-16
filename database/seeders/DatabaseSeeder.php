@@ -17,16 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(CAPermissiosSeeder::class);
+         $this->call(CAPermissiosSeeder::class);
         
         User::create([
             'name' => 'Cristobal C. Acosta',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123')
+            'password' => 'admin123',
         ]);
-        User::factory(10)->create();
-        Project::factory(10)->create();
-        Task::factory(30)->create();
+        // User::factory(10)->create();
+        // Project::factory(10)->create();
+        // Task::factory(30)->create();
 
 
     }

@@ -32,7 +32,7 @@
                     <tbody>
                         @foreach ($roles as $role)
                             <tr>
-                                <th scope="row">{{ $role->id }}</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $role->name }}</td>
                                 <td>{{ $role->slug }}</td>
                                 <td>{{ $role->description }}</td>

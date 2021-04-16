@@ -19,6 +19,28 @@
                         </a>
                     </div>
                 @endcan
+               
+                <form method="GET" action="{{ url('admin/projects') }}" accept-charset="UTF-8" class="form-inline col mb-2 justify-content-center"
+                role="search">
+                <div class="form-group mr-1">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar por Nombre..."
+                        value="{{ request('name') }}">
+                </div>
+                <div class="form-group mr-1">
+                    <input type="date" class="form-control" name="date" placeholder="fecha.."
+                        value="{{ request('date') }}">
+                </div>
+                <div class="form-group mr-1">
+                    <input type="text" class="form-control" name="status" placeholder="Buscar por Estado..."
+                        value="{{ request('status') }}">
+                </div>
+                <span class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </span>
+       
+            </form>
                 @include('custom.message')
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-sm ">
@@ -27,7 +49,7 @@
                                 <th>No</th>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
-                                {{-- <th>Estado</th> --}}
+                                <th>Estado</th>
                                 <th>Fecha de Creacion</th>
                                 <th colspan="3">Action</th>
                             </tr>
@@ -38,7 +60,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
-                                    {{-- <td>{{ $project->status }}</td> --}}
+                                    <td>{{ $project->status }}</td>
                                     <td>{{ $project->created_at->format('d M Y') }}</td>
                                     <td style="border-left: 0; border-right: 0;">
                                         <a href="{{ route('projects.show', $project->id) }}">

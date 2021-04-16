@@ -20,32 +20,33 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nombre:</strong>
-                                <input type="text" name="name" class="form-control" placeholder="Nombre">
+                                <input type="text" name="name" class="form-control" placeholder="Nombre" 
+                                value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Descripcion:</strong>
                                 <textarea class="form-control" rows="3" name="description"
-                                    placeholder="Descripcion"></textarea>
+                                    placeholder="Descripcion">{{ old('description') }}</textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label for="user_id">Estado del Proyecto</label>
                                 <select name="status" class="form-control">
-                                    <option value="1">Comenzado</option>
-                                    <option value="2">En Proceso ...</option>
-                                    <option value="3">Terminado</option>
+                                    <option value="comenzado">Comenzado</option>
+                                    <option value="en_proceso">En Proceso ...</option>
+                                    <option value="terminado">Terminado</option>
                                 </select>
 
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <label for="user_id">Lista usuario Asignar A:</label>
+                                <label for="user_id">Asignar A:</label>
                                 <select name="user_assigned_id" class="form-control">
-                                    <option value="">General</option>
+                                    <option value="">Lista usuario </option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach

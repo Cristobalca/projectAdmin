@@ -144,7 +144,7 @@ return [
     */
 
     'sidebar_mini' => false, //quitar el siderbar por completo
-    'sidebar_collapse' => false, //siber al abrir estara cerrado
+    'sidebar_collapse' => true, //siber al abrir estara cerrado
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -244,14 +244,14 @@ return [
             'text' => 'Lista de Usuarios',
             'route'  => 'user.index',
             'icon' => 'fas fa-fw fa-address-book',
-            // 'can' => 'project.create',
-            'role' => 'admin'
+            
+            
         ], 
         [
             'text' => 'Lista De Roles',
             'route'  => 'role.index',
             'icon' => 'fas fa-fw fa-id-card',
-            // 'can' => 'role.index'
+            // 'can' => 'haveaccess',
         ],
         
         ['header' => 'ACCIONES'],

@@ -25,11 +25,13 @@
                                     <input type="text" class="form-control" id="email" placeholder="email" name="email"
                                         value="{{ old('email', $user->email) }}">
                                 </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password"
+                                {{-- <div class="form-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Nueva Contraseña" name="password"
                                         >
-                                </div>
-
+                                </div> --}}
+                                @can('haveaccess','role.edit')
+                                    
+                                
                                 <div class="form-group">
                                     <select class="form-control" name="roles" id="roles">
                                         @foreach ($roles as $role)
@@ -44,7 +46,7 @@
                                     </select>
                                 </div>
 
-
+                                @endcan
                                 <hr>
                                 <input class="btn btn-primary" type="submit" value="Guardar">
                                 <a class="btn btn-danger" href="{{ route('user.index') }}">Volver</a>

@@ -148,6 +148,8 @@ return [
 
     'attributes' => [
         'name' => 'Nombre',
+        'description' => 'Descripcion',
+        'user_assigned_id' => 'Usario Asignado'
         
     ],
 

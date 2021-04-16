@@ -56,13 +56,7 @@ class TaskPolicy
         //
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
-     * @return mixed
-     */
+    
     public function update(User $user, Task $task)
     {
         // return $user->id === $task->user_assigned_id;

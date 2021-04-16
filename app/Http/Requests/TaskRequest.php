@@ -24,8 +24,8 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:250',
             'project_id' =>'required',
             'user_created_id' => 'required',
             'user_assigned_id' => 'required',

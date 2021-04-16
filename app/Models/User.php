@@ -8,16 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\CAPermission\Traits\UserTrait;
 use App\Models\Project;
+use App\CAPermission\Models\Role;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable , UserTrait;
 
-    /**
-     * Usertrait es una clase abastracta que ayuda a reutilizar el codigo 
-     * y separar la funcionalidades del resto de clases 
-     * con la ventaja de que solo se importa y tiene acceso a todas sus funciones
-     */
+    
     
     protected $fillable = [
         'name',
@@ -43,6 +40,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // hashea los password no encriptar en los seeder 
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
@@ -55,6 +53,25 @@ class User extends Authenticatable
     public function roles()
     {
 
-        return $this->belongsToMany('App\CAPermission\Models\Role')->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
+
+    // public function scopeName($query, $name)
+    // {
+    //     if($name)
+        
+    //      return $query->where('name','LIKE',"%$name%");
+    // }
+    // public function scopeRole($query, $role)
+    // {
+    //     if($role)
+        
+    //      return $query->where('name','LIKE',"%$role%");
+    // }
+    // public function scope($query, $name)
+    // {
+    //     if($name)
+        
+    //      return $query->where('name','LIKE',"%$name%");
+    // }
 }

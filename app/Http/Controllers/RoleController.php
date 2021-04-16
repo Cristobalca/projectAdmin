@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
-   /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         Gate::authorize('haveaccess','role.index');
@@ -23,11 +19,7 @@ class RoleController extends Controller
         return view('role.index',compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         Gate::authorize('haveaccess','role.create');
@@ -39,12 +31,7 @@ class RoleController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         Gate::authorize('haveaccess','role.create');
@@ -59,7 +46,6 @@ class RoleController extends Controller
         
         //if ($request->get('permission')) {
             //return $request->all();
-            
             $role->permissions()->sync($request->get('permission'));
         //}
         return redirect()->route('role.index')
@@ -111,20 +97,13 @@ class RoleController extends Controller
 
         $role->update($request->all());
         
-        //if ($request->get('permission')) {
-            //return $request->all();
             $role->permissions()->sync($request->get('permission'));
-        //}
+       
         return redirect()->route('role.index')
             ->with('status_success','Role Actualizado Exitosamente'); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Role $role)
     {   
         $this->authorize('haveaccess','role.destroy');
